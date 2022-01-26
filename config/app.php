@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,
+        EloquentFilter\ServiceProvider::class,
 
         /*
          * Application Service Providers...

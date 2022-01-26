@@ -3,6 +3,7 @@
 namespace App\Models;
 
 
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,6 +22,7 @@ class Post extends Model implements HasMedia {
     use SoftDeletes;
     use HasTags;
     use InteractsWithMedia;
+    use Filterable;
 
     /**
      * The attributes that aren't mass assignable.
