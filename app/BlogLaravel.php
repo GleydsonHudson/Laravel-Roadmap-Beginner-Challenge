@@ -3,8 +3,6 @@
 namespace App;
 
 
-use Prophecy\Doubler\Generator\Node\ReturnTypeNode;
-
 class BlogLaravel {
 
     /**

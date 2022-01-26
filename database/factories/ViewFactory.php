@@ -19,7 +19,6 @@ class ViewFactory extends Factory
             'ip' => $this->faker->ipv4(),
             'agent' => $this->faker->userAgent(),
             'referer' => $this->faker->url()
-
         ];
     }
 }

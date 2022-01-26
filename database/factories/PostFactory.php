@@ -25,7 +25,6 @@ class PostFactory extends Factory
                 'description' => $this->faker->sentence(),
                 'canonical_link' => $this->faker->sentence(),
             ],
-
         ];
     }
 }
