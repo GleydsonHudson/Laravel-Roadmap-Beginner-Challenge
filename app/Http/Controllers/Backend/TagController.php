@@ -23,7 +23,7 @@ class TagController extends Controller
     {
         $tags = Tag::all();
 
-        return view('backend.tag.index', ['tags' => $tags]);
+        return view('backend.tag.index', compact('tags'));
     }
 
     /**

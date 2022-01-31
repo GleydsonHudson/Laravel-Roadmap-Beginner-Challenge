@@ -22,7 +22,7 @@ class CategoryController extends Controller {
     {
         $categories = Category::all();
 
-        return view('backend.category.index', ['categories' => $categories]);
+        return view('backend.category.index', compact('categories'));
     }
 
     /**

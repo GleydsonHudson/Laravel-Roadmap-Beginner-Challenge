@@ -23,7 +23,7 @@ class PostController extends Controller {
     {
         $posts = Post::with('category', 'tags', 'comments')->paginate();
 
-        return view('backend.post.index', ['posts' => $posts]);
+        return view('backend.post.index', compact('posts'));
     }
 
     /**

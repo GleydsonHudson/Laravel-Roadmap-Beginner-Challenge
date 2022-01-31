@@ -20,23 +20,23 @@ class RolesAndPermissionsSeeder extends Seeder {
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $arrayOfPermissionNames = ['create user', 'edit user', 'delete user',
-            'create post', 'edit post', 'delete post', 'publish post', 'unpublish post',
-            'create category', 'edit category', 'delete category',
-            'create tag', 'edit tag', 'delete tag',
+        $arrayOfPermissionNames = ['create user', 'view user', 'edit user', 'delete user',
+            'create post', 'view post', 'edit post', 'delete post', 'publish post', 'unpublish post',
+            'create category', 'view category', 'edit category', 'delete category',
+            'create tag', 'view tag', 'edit tag', 'delete tag',
         ];
 
         $permissionsByRole = [
-            'admin'  => ['create user', 'edit user', 'delete user',
-                'create post', 'edit post', 'delete post', 'publish post', 'unpublish post',
-                'create category', 'edit category', 'delete category',
-                'create tag', 'edit tag', 'delete tag',
+            'admin'  => ['create user', 'view user', 'edit user', 'delete user',
+                'create post', 'view post', 'edit post', 'delete post', 'publish post', 'unpublish post',
+                'create category', 'view category', 'edit category', 'delete category',
+                'create tag', 'view tag', 'edit tag', 'delete tag',
             ],
-            'editor' => ['create post', 'edit post', 'delete post', 'publish post', 'unpublish post',
-                'create category', 'edit category', 'delete category',
-                'create tag', 'edit tag', 'delete tag',
+            'editor' => ['create post', 'view post', 'edit post', 'delete post', 'publish post', 'unpublish post',
+                'create category', 'view category', 'edit category', 'delete category',
+                'create tag', 'view tag', 'edit tag', 'delete tag',
             ],
-            'writer' => ['create post', 'edit post',],
+            'writer' => ['create post', 'view post', 'edit post',],
         ];
 
         $permissions = collect($arrayOfPermissionNames)->map(function ($permission) {
