@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::get('/posts', [FrontendPostController::class, 'index'])->name('frontend.post.index');
-Route::get('/posts/{post}', [FrontendPostController::class, 'show'])->name('frontend.post.show');
+Route::get('/posts/{post:slug}', [FrontendPostController::class, 'show'])->name('frontend.post.show');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 

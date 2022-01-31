@@ -19,7 +19,7 @@ class PostController extends Controller {
      */
     public function index(): View|Factory|Application
     {
-        $posts = Post::with('category', 'tags', 'comments')->publisehd()->paginate();
+        $posts = Post::with('category', 'tags', 'comments')->published()->paginate();
 
         return view('frontend.post.index', ['posts' => $posts]);
     }

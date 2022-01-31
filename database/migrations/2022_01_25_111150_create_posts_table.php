@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('slug')->unique();
             $table->longText('body')->nullable();
             $table->text('excerpt')->nullable();
+            $table->string('status')->default('draft');
             $table->dateTime('published_at')->nullable();
             $table->bigInteger('likes')->default(0);
             $table->json('meta')->nullable();
