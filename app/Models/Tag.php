@@ -25,4 +25,20 @@ class Tag extends Model
             ->morphToMany(self::getTagClassName(), 'taggable', 'taggables', null, 'tag_id')
             ->orderBy('order_column');
     }
+
+    public function scopeWithTagSlug($query, string $slug, string $type = null)
+    {
+        $locale = $locale ?? app()->getLocale();
+
+        $tag = \Spatie\Tags\Tag::where("slug->{$locale}", $slug)
+            ->where('type', $type)
+            ->first();
+
+        $query->whereHas('tags', function ($query) use ($tag) {
+            $query->where('tags.id', $tag ? $tag->id : 0);
+        });
+
+        return $query;
+    }
+
 }

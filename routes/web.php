@@ -32,13 +32,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
         Route::view('/', 'backend.dashboard')->name('dashboard');
 
-        Route::resource('/posts', BackendPostController::class);
+        Route::resource('/posts', BackendPostController::class)->scoped(['post' => 'slug']);
 
         Route::resource('/users', UserController::class)->except('show');
 
-        Route::resource('/categories', CategoryController::class)->except('show');
+        Route::resource('/categories', CategoryController::class)->except('show')->scoped(['category' => 'slug']);
 
-        Route::resource('/tags', TagController::class)->except('show');
+        Route::resource('/tags', TagController::class)->except('show')->scoped(['tag' => 'slug']);
     });
 
 });
