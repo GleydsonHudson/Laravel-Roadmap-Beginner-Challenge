@@ -1,4 +1,5 @@
 <x-jet-form-section submit="updateProfileInformation">
+
     <x-slot name="title">
         {{ __('Profile Information') }}
     </x-slot>
@@ -52,11 +53,18 @@
             </div>
         @endif
 
-        <!-- Name -->
+        <!-- First Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="name" value="{{ __('Name') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
-            <x-jet-input-error for="name" class="mt-2" />
+            <x-jet-label for="first_name" value="{{ __('Name') }}" />
+            <x-jet-input id="first_name" type="text" class="mt-1 block w-full" wire:model.defer="state.firs_name" autocomplete="first_name" />
+            <x-jet-input-error for="first_name" class="mt-2" />
+        </div>
+
+        <!-- Last Name -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="last_name" value="{{ __('Surname') }}" />
+            <x-jet-input id="last_name" type="text" class="mt-1 block w-full" wire:model.defer="state.last_nname" autocomplete="last_nname" />
+            <x-jet-input-error for="last_name" class="mt-2" />
         </div>
 
         <!-- Email -->

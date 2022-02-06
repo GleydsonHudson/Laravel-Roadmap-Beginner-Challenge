@@ -11,9 +11,9 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
-    public function index(): Factory|View|Application
+    public function index(): View
     {
-        $users = User::with('roles', 'permissions')->get();
+        $users = User::with('roles', 'permissions')->paginate(10);
 
         return view('backend.user.index', compact('users'));
     }

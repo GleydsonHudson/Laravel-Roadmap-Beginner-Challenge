@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Spatie\Tags\Tag;
@@ -14,41 +15,28 @@ use function Symfony\Component\Translation\t;
 
 class TagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Application|Factory|View
-     */
-    public function index(): View|Factory|Application
+
+    public function index(): View
     {
-        $tags = Tag::all();
+        $tags = Tag::paginate(10);
 
         return view('backend.tag.index', compact('tags'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Application|Factory|View
-     */
-    public function create(): View|Factory|Application
+
+    public function create(): View
     {
         return view('backend.tag.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Application|Factory|View
-     */
-    public function store(Request $request): View|Factory|Application
+
+    public function store(Request $request): RedirectResponse
     {
         // TODO: Create a StoreTagRequest to validate the fields
 
         // TODO: Implement the persistence of the Post in the DB
 
-        return view('backend.tag.index');
+        return redirect()->route('backend.tag.index')->with('success', __('Tag created successfully'));
     }
 
 

@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     // TODO: Add the Roles that can see the following routes: Admin | Writer
     Route::group(['prefix' => 'dashboard'], function (){
 
-        Route::view('/', 'dashboard')->name('dashboard');
+        Route::view('/', 'backend.dashboard')->name('dashboard');
 
         Route::resource('/posts', BackendPostController::class);
 

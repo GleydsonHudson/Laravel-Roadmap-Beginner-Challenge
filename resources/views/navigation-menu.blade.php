@@ -21,26 +21,26 @@
 
                     @can('view user')
                         <x-jet-nav-link href="{{ route('users.index') }}"
-                                        :active="request()->routeIs('users.index')">
+                                        :active="request()->routeIs('users.*')">
                             {{ __('Users') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('view post')
-                        <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
+                        <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.*')">
                             {{ __('Posts') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('view category')
                         <x-jet-nav-link href="{{ route('categories.index') }}"
-                                        :active="request()->routeIs('categories.index')">
+                                        :active="request()->routeIs('categories.*')">
                             {{ __('Categories') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('view tag')
-                        <x-jet-nav-link href="{{ route('tags.index') }}" :active="request()->routeIs('tags.index')">
+                        <x-jet-nav-link href="{{ route('tags.index') }}" :active="request()->routeIs('tags.*')">
                             {{ __('Tags') }}
                         </x-jet-nav-link>
                     @endcan

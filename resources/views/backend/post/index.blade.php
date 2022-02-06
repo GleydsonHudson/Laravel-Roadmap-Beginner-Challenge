@@ -14,9 +14,13 @@
                             <h1 class="text-2xl font-medium">{{__("You haven't post anything.. Don't let your followers waiting!")}}</h1>
                         @else
                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                <table class="min-w-full divide-y divide-gray-200 w-full">
+                                <table class="min-w-full divide-y divide-gray-200 w-full table-auto">
                                     <thead>
                                     <tr>
+                                        <th scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            {{__('ID')}}
+                                        </th>
                                         <th scope="col"
                                             class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             {{__('Title')}}
@@ -49,35 +53,38 @@
 
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                                {{ $post->id }}
+                                            </td>
+                                            <td class="px-6 py-4  text-sm text-gray-900">
                                                 {{ $post->title }}
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <td class="px-6 py-4  text-sm text-gray-900">
                                                 {{ $post->slug }}
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {{ $post->exceprt }}
+                                            <td class="px-6 py-4  text-sm text-gray-900">
+                                                {{ \Illuminate\Support\Str::words($post->excerpt, 30, '...') }}
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <td class="px-6 py-4  text-sm text-gray-900">
                                                 {{ $post->status }}
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <td class="px-6 py-4  text-sm text-gray-900">
                                                 {{ $post->likes }}
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <td class="px-6 py-4  text-sm font-medium flex">
 
-                                                <a href="{{ route('tags.edit', $post->id) }}"
+                                                <a href="{{ route('posts.edit', $post) }}"
                                                    class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Edit</a>
 
                                                 <form class="inline-block"
-                                                      action="{{ route('tags.destroy', $post->id) }}"
+                                                      action="{{ route('posts.destroy', $post) }}"
                                                       method="POST" onsubmit="return confirm('Are you sure?');">
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    @csrf
+                                                    @method('DELETE')
                                                     <input type="submit"
                                                            class="text-red-600 hover:text-red-900 mb-2 mr-2"
                                                            value="Delete">
