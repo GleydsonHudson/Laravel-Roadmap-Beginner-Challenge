@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('category_id')->constrained();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->longText('body')->nullable();
+            $table->json('body');
             $table->text('excerpt')->nullable();
             $table->string('status')->default('draft');
             $table->dateTime('published_at')->nullable();
