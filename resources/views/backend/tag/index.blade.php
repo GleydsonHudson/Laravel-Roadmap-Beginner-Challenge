@@ -1,11 +1,15 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <x-backend.header name="Tags" />
+        <x-backend.header name="Tags"/>
     </x-slot>
 
     <div>
-        <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto py-8 sm:px-6 lg:px-8">
+
+            <div class="block mb-6">
+                <x-primary-link :href="route('tags.create')">{{__('Create Tag')}}</x-primary-link>
+            </div>
 
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -53,17 +57,17 @@
 
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
 
-                                                <a href="{{ route('tags.edit', $tag) }}"
-                                                   class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Edit</a>
+                                                <x-secondary-link
+                                                    :href="route('tags.edit', $tag)">{{__('Edit')}}</x-secondary-link>
 
                                                 <form class="inline-block"
                                                       action="{{ route('tags.destroy', $tag) }}"
                                                       method="POST" onsubmit="return confirm('Are you sure?');">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <input type="submit"
-                                                           class="text-red-600 hover:text-red-900 mb-2 mr-2"
-                                                           value="Delete">
+                                                    <x-jet-danger-button>
+                                                        {{ __('Delete') }}
+                                                    </x-jet-danger-button>
                                                 </form>
 
                                             </td>

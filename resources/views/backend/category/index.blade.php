@@ -5,7 +5,11 @@
     </x-slot>
 
     <div>
-        <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto py-8 sm:px-6 lg:px-8">
+
+            <div class="block mb-6">
+                <x-primary-link :href="route('categories.create')" >{{__('Create Category')}}</x-primary-link>
+            </div>
 
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -55,17 +59,18 @@
 
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
 
-                                                <a href="{{ route('categories.edit', $category) }}"
-                                                   class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Edit</a>
+                                                <x-secondary-link
+                                                    :href="route('categories.edit', $category)">{{__('Edit')}}</x-secondary-link>
 
                                                 <form class="inline-block"
                                                       action="{{ route('categories.destroy', $category) }}"
                                                       method="POST" onsubmit="return confirm('Are you sure?');">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <input type="submit"
-                                                           class="text-red-600 hover:text-red-900 mb-2 mr-2"
-                                                           value="Delete">
+
+                                                    <x-jet-danger-button>
+                                                        {{ __('Delete') }}
+                                                    </x-jet-danger-button>
                                                 </form>
 
                                             </td>
