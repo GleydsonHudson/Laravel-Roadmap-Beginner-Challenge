@@ -11,16 +11,12 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class CategoryController extends Controller {
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Application|Factory|View
-     */
-    public function index(): View|Factory|Application
+class CategoryController extends Controller
+{
+    
+    public function index(): View
     {
-        $categories = Category::all();
+        $categories = Category::paginate();
 
         return view('backend.category.index', compact('categories'));
     }
