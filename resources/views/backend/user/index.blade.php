@@ -8,7 +8,7 @@
         <div class="max-w-6xl mx-auto py-8 sm:px-6 lg:px-8">
 
             <div class="block mb-6">
-                <x-primary-link :href="route('users.create')" >{{__('Create User')}}</x-primary-link>
+                <x-link.primary :href="route('users.create')" >{{__('Create User')}}</x-link.primary>
             </div>
 
             <div class="flex flex-col">
@@ -74,8 +74,8 @@
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
 
-                                            <x-secondary-link
-                                                :href="route('users.edit', $user)">{{__('Edit')}}</x-secondary-link>
+                                            <x-link.secondary
+                                                :href="route('users.edit', $user)">{{__('Edit')}}</x-link.secondary>
 
                                             <form class="inline-block" action="{{ route('users.destroy', $user) }}"
                                                   method="POST" onsubmit="return confirm('Are you sure?');">

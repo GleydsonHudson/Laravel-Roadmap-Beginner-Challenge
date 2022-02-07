@@ -8,7 +8,7 @@
         <div class="max-w-6xl mx-auto py-8 sm:px-6 lg:px-8">
 
             <div class="block mb-6">
-                <x-primary-link :href="route('posts.create')">{{__('Create Post')}}</x-primary-link>
+                <x-link.primary :href="route('posts.create')">{{__('Create Post')}}</x-link.primary>
             </div>
 
             <div class="flex flex-col">
@@ -81,8 +81,8 @@
 
                                             <td class="px-6 py-4 text-sm font-medium flex space-x-1">
 
-                                                <x-secondary-link
-                                                    :href="route('posts.edit', $post)">{{__('Edit')}}</x-secondary-link>
+                                                <x-link.secondary
+                                                    :href="route('posts.edit', $post)">{{__('Edit')}}</x-link.secondary>
 
                                                 <form class="inline-block"
                                                       action="{{ route('posts.destroy', $post) }}"

@@ -3,15 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Spatie\Tags\Tag;
-use function Symfony\Component\Translation\t;
 
 class TagController extends Controller
 {
@@ -43,7 +40,7 @@ class TagController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Tag $tag
+     * @param Tag $tag
      * @return Application|Factory|View
      */
     public function edit(Tag $tag): View|Factory|Application
@@ -51,30 +48,29 @@ class TagController extends Controller
         return view('backend.tag.edit', ['tag' => $tag]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param  Tag $tag
-     * @return Application|Factory|View
-     */
-    public function update(Request $request, Tag $tag): View|Factory|Application
+
+    public function update(Request $request, Tag $tag): RedirectResponse
     {
         // TODO: Create a UpdateTagRequest to validate the fields
 
         // TODO: Implement the persistence of the Post in the DB
 
-        return view('backend.tag.index');
+        return redirect()->route('backend.tag.index')
+            ->with([
+                'flash'      => 'Tag updated successfully',
+                'flash.type' => 'success',
+            ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Tag $tag
-     * @return Response
-     */
-    public function destroy(Tag $tag)
+
+    public function destroy(Tag $tag): RedirectResponse
     {
-        // TODO: Look how Jetstream handles the deletion of an user
+        $tag->delete();
+
+        return redirect()->route('tags.index')
+            ->with([
+                'flash.message' => 'Tag deleted successfully',
+                'flash.type'    => 'success',
+            ]);
     }
 }

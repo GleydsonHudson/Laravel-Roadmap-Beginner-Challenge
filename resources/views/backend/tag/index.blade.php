@@ -8,7 +8,7 @@
         <div class="max-w-6xl mx-auto py-8 sm:px-6 lg:px-8">
 
             <div class="block mb-6">
-                <x-primary-link :href="route('tags.create')">{{__('Create Tag')}}</x-primary-link>
+                <x-link.primary :href="route('tags.create')">{{__('Create Tag')}}</x-link.primary>
             </div>
 
             <div class="flex flex-col">
@@ -57,18 +57,10 @@
 
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
 
-                                                <x-secondary-link
-                                                    :href="route('tags.edit', $tag)">{{__('Edit')}}</x-secondary-link>
+                                                <x-link.secondary
+                                                    :href="route('tags.edit', $tag)">{{__('Edit')}}</x-link.secondary>
 
-                                                <form class="inline-block"
-                                                      action="{{ route('tags.destroy', $tag) }}"
-                                                      method="POST" onsubmit="return confirm('Are you sure?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <x-jet-danger-button>
-                                                        {{ __('Delete') }}
-                                                    </x-jet-danger-button>
-                                                </form>
+                                                <x-buttons.delete-inline :action="route('tags.destroy', $tag)"/>
 
                                             </td>
                                         </tr>
