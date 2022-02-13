@@ -15,7 +15,7 @@ class TagController extends Controller
 
     public function index(): View
     {
-        $tags = Tag::paginate(10);
+        $tags = Tag::paginate(10)->sortDesc();
 
         return view('backend.tag.index', compact('tags'));
     }
@@ -33,7 +33,11 @@ class TagController extends Controller
 
         // TODO: Implement the persistence of the Post in the DB
 
-        return redirect()->route('backend.tag.index')->with('success', __('Tag created successfully'));
+        return redirect()->route('tags.index')
+            ->with([
+                'flash'      => __('Tag created successfully'),
+                'flash.type' => 'success',
+            ]);
     }
 
 
@@ -55,9 +59,9 @@ class TagController extends Controller
 
         // TODO: Implement the persistence of the Post in the DB
 
-        return redirect()->route('backend.tag.index')
+        return redirect()->route('tags.index')
             ->with([
-                'flash'      => 'Tag updated successfully',
+                'flash'      => __('Tag updated successfully'),
                 'flash.type' => 'success',
             ]);
     }

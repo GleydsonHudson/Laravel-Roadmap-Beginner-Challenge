@@ -15,7 +15,7 @@ class PostController extends Controller
 
     public function index(): View
     {
-        $posts = Post::with('category', 'tags', 'comments')->paginate();
+        $posts = Post::with('category', 'tags', 'comments')->paginate()->sortDesc();
 
         return view('backend.post.index', compact('posts'));
     }
@@ -29,12 +29,15 @@ class PostController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        dd($request);
         // TODO: Create a StorePostRequest to validate the fields
 
         // TODO: Implement the persistence of the Post in the DB
 
-        return redirect()->route('backend.post.index')->with('success', __('Post created successfully'));
+        return redirect()->route('posts.index')
+            ->with([
+                'flash'      => __('Post created successfully'),
+                'flash.type' => 'success',
+            ]);
     }
 
 
@@ -59,14 +62,22 @@ class PostController extends Controller
 
         // TODO: Implement the update of the Post in the DB
 
-        return redirect()->route('backend.post.index')->with('success', __('Post updated successfully'));
+        return redirect()->route('posts.index')
+            ->with([
+                'flash'      => __('Post updated successfully'),
+                'flash.type' => 'success',
+            ]);
     }
 
 
-    public function destroy(Post $post)
+    public function destroy(Post $post): RedirectResponse
     {
         // TODO: Look how Jetstream handles the deletion of an user
 
-        return redirect()->route('backend.post.index')->with('success', __('Post deleted successfully'));
+        return redirect()->route('posts.index')
+            ->with([
+                'flash'      => __('Post deleted successfully'),
+                'flash.type' => 'success',
+            ]);
     }
 }
